@@ -67,7 +67,10 @@ async def regenerate(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await send_aliases(query.message, email)
 
 # run bot
-app = ApplicationBuilder().token("BOT_TOKEN").build()
+import os
+
+TOKEN = os.getenv("BOT_TOKEN")
+app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(MessageHandler(filters.TEXT, handle_message))
 app.add_handler(CallbackQueryHandler(regenerate))
